@@ -34,7 +34,7 @@
         $response = "END Your major is ".$major;
     }
 
-    header('Content-type' text/plain);
+    header('Content-type; text/plain');
     echo $response;
 
 ?>
