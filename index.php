@@ -1,41 +1,35 @@
 <?php
-    $sessionid = $_POST["sessionId"];
+// Read the variables sent via POST from our API
+$sessionId   = $_POST["sessionId"];
+$serviceCode = $_POST["serviceCode"];
+$phoneNumber = $_POST["phoneNumber"];
+$text        = $_POST["text"];
 
-    $serviceCode = $_POST["serviceCode"];
+if ($text == "") {
+    // This is the first request. Note how we start the response with CON
+    $response  = "CON What would you want to check \n";
+    $response .= "1. My Account \n";
+    $response .= "2. My phone number";
 
-    $phoneNumber = $_POST["phoneNumber"];
+} else if ($text == "1") {
+    // Business logic for first level response
+    $response = "CON Choose account information you want to view \n";
+    $response .= "1. Account number \n";
 
-    $text = $_POST["text"];
+} else if ($text == "2") {
+    // Business logic for first level response
+    // This is a terminal request. Note how we start the response with END
+    $response = "END Your phone number is ".$phoneNumber;
 
-    if ($text == ""){
-        //First Request
-        $response = "CON What would you want to check \n";
-        $response .= "1. Ashesi Student Account \n ";
-        $response .= "2. My Phone Number";
+} else if($text == "1*1") { 
+    // This is a second level response where the user selected 1 in the first instance
+    $accountNumber  = "ACC1001";
 
-    } else if ($text == "1"){
-        //First Level Response
-        $response = "CON Student information you want to view \n";
-        $response .= "1. Student ID Number";
-        $response .= "2. Student Major";
+    // This is a terminal request. Note how we start the response with END
+    $response = "END Your account number is ".$accountNumber;
 
-    } else if ($text == "2"){
-        $response = "END Your phone number is ".$phoneNumber;
+}
 
-    } else if ($text == "1*1") {
-        $studentID = "12462023"; //HardCoded. Database to be added later
-
-        //A terminal request
-
-        $response = "END Your account Number is".$studentID;
-    } else if ($text = "1*2") {
-        $major = "Computer Science"; //Hardcoded. Database to be added later
-
-        $response = "END Your major is ".$major;
-    }
-
-    header('Content-type; text/plain');
-    echo $response;
-
-?>
-
+// Echo the response back to the API
+// header('Content-type: text/plain');
+echo $response;
