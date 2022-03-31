@@ -9,7 +9,7 @@
 
     if ($text == ""){
         //First Request
-        $response = "CON What would you want to check \n";
+        $response = "CON What would you want to check Richard?\n";
         $response .= "1. Ashesi Student Account \n";
         $response .= "2. My Phone Number \n";
 
