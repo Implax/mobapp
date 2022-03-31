@@ -7,18 +7,19 @@
 
     $text = $_POST["text"];
 
-    if ($text = ""){
+    if ($text == ""){
         //First Request
         $response = "CON What would you want to check \n";
-        $response .= "1. Ashesi Student Account \n ";
-        $response .= "2. My Phone Number";
-    } else if (text == "1"){
+        $response .= "1. Ashesi Student Account \n";
+        $response .= "2. My Phone Number \n";
+
+    } else if ($text == "1"){
         //First Level Response
         $response = "CON Student information you want to view \n";
-        $response .= "1. Student ID Number";
-        $response .= "2. Student Major";
+        $response .= "1. Student ID Number \n";
+        $response .= "2. Student Major \n";
 
-    } else if ($text =- "2"){
+    } else if ($text == "2"){
         $response = "END Your phone number is ".$phoneNumber;
 
     } else if ($text == "1*1") {
@@ -33,7 +34,8 @@
         $response = "END Your major is ".$major;
     }
 
-    header('Content-type' text/plain);
+    // header('Content-type: text/plain');
     echo $response;
 
 ?>
+
